@@ -11,6 +11,8 @@ interface TooltipProps {
   tailHeight?: number; // 선택
   tailMargin?: number; // 선택
   cornerCurve?: number; // 선택
+  leftCanvasMargin?: number;
+  topCanvasMargin?: number;
 }
 
 interface BubbleSizeType {
@@ -20,6 +22,8 @@ interface BubbleSizeType {
   tailHeight: number; // 필수
   tailMargin: number; // 필수
   cornerCurve: number; // 필수
+  leftCanvasMargin?: number;
+  topCanvasMargin?: number;
 }
 
 const CanvasTooltip: React.FC<TooltipProps> = ({
@@ -27,11 +31,13 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
   position = "top",
   children,
   width = 100,
-  height = 100,
+  height = 0,
   tailWidth = 20,
   tailHeight = 30,
   tailMargin = 10,
-  cornerCurve = 40,
+  cornerCurve = 50,
+  leftCanvasMargin = 5,
+  topCanvasMargin = 5,
 }) => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
   const initializeCanvas = (canvas: HTMLCanvasElement | null) => {
@@ -136,26 +142,26 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         tailWidth,
         cornerCurve,
       }: BubbleSizeType) => {
-        return `M ${cornerCurve} 0
-        L ${cornerCurve + width} 0
-        C ${cornerCurve + width + cornerCurve / 2} 0 
-        ${width + cornerCurve * 2} ${cornerCurve / 2} 
-        ${width + cornerCurve * 2} ${cornerCurve} 
-        L ${width + cornerCurve * 2} ${cornerCurve + (height - tailWidth) / 2} 
-        L ${width + cornerCurve * 2 + tailHeight} ${cornerCurve + ((height - tailWidth) / 2 + tailWidth / 2)} 
-        L ${width + cornerCurve * 2} ${cornerCurve + ((height - tailWidth) / 2 + tailWidth)} 
-        L ${width + cornerCurve * 2} ${cornerCurve + height} 
-        C ${width + cornerCurve * 2} ${cornerCurve + height + cornerCurve / 2}
-        ${width + cornerCurve + cornerCurve / 2} ${height + cornerCurve * 2} 
-        ${width + cornerCurve} ${height + cornerCurve * 2}
-        L ${cornerCurve} ${height + cornerCurve * 2}
-        C ${cornerCurve / 2} ${height + cornerCurve * 2}
-        ${0} ${height + cornerCurve + cornerCurve / 2}
-        ${0} ${height + cornerCurve}
-        L ${0} ${cornerCurve}
-        C ${0} ${cornerCurve / 2}
-        ${cornerCurve / 2} 0
-        ${cornerCurve} 0 Z
+        return `M ${leftCanvasMargin + cornerCurve} ${0 + topCanvasMargin}
+        L ${leftCanvasMargin + cornerCurve + width} ${0 + topCanvasMargin}
+        C ${leftCanvasMargin + cornerCurve + width + cornerCurve / 2} ${0 + topCanvasMargin}
+        ${leftCanvasMargin + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve / 2} 
+        ${leftCanvasMargin + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve} 
+        L ${leftCanvasMargin + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve + (height - tailWidth) / 2} 
+        L ${leftCanvasMargin + width + cornerCurve * 2 + tailHeight} ${topCanvasMargin + cornerCurve + ((height - tailWidth) / 2 + tailWidth / 2)} 
+        L ${leftCanvasMargin + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve + ((height - tailWidth) / 2 + tailWidth)} 
+        L ${leftCanvasMargin + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve + height} 
+        C ${leftCanvasMargin + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve + height + cornerCurve / 2}
+        ${leftCanvasMargin + width + cornerCurve + cornerCurve / 2} ${topCanvasMargin + height + cornerCurve * 2} 
+        ${leftCanvasMargin + width + cornerCurve} ${topCanvasMargin + height + cornerCurve * 2}
+        L ${leftCanvasMargin + cornerCurve} ${topCanvasMargin + height + cornerCurve * 2}
+        C ${leftCanvasMargin + cornerCurve / 2} ${topCanvasMargin + height + cornerCurve * 2}
+        ${leftCanvasMargin + 0} ${topCanvasMargin + height + cornerCurve + cornerCurve / 2}
+        ${leftCanvasMargin + 0} ${topCanvasMargin + height + cornerCurve}
+        L ${leftCanvasMargin + 0} ${topCanvasMargin + cornerCurve}
+        C ${leftCanvasMargin + 0} ${topCanvasMargin + cornerCurve / 2}
+        ${leftCanvasMargin + cornerCurve / 2} ${topCanvasMargin + 0}
+        ${leftCanvasMargin + cornerCurve} ${topCanvasMargin + 0} Z
   `;
       };
       const createTopBubble = ({
@@ -164,26 +170,26 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         tailWidth,
         cornerCurve,
       }: BubbleSizeType) => {
-        return `M ${cornerCurve} 0
-        L ${cornerCurve + width} 0
-        C ${cornerCurve + width + cornerCurve / 2} 0 
-        ${width + cornerCurve * 2} ${cornerCurve / 2} 
-        ${width + cornerCurve * 2} ${cornerCurve} 
-        L ${width + cornerCurve * 2} ${cornerCurve + height} 
-        C ${width + cornerCurve * 2} ${cornerCurve + height + cornerCurve / 2}
-        ${width + cornerCurve + cornerCurve / 2} ${height + cornerCurve * 2} 
-        ${width + cornerCurve} ${height + cornerCurve * 2}
-        L ${width + cornerCurve - (width - tailWidth) / 2} ${height + cornerCurve * 2}
-        L ${width + cornerCurve - ((width - tailWidth) / 2 + tailWidth / 2)} ${height + cornerCurve * 2 + tailHeight}
-        L ${width + cornerCurve - ((width - tailWidth) / 2 + tailWidth)} ${height + cornerCurve * 2}
-        L ${cornerCurve} ${height + cornerCurve * 2}
-        C ${cornerCurve / 2} ${height + cornerCurve * 2}
-        ${0} ${height + cornerCurve + cornerCurve / 2}
-        ${0} ${height + cornerCurve}
-        L ${0} ${cornerCurve}
-        C ${0} ${cornerCurve / 2}
-        ${cornerCurve / 2} 0
-        ${cornerCurve} 0 Z
+        return `M ${leftCanvasMargin + cornerCurve} ${topCanvasMargin + 0}
+        L ${leftCanvasMargin + cornerCurve + width} ${topCanvasMargin + 0}
+        C ${leftCanvasMargin + cornerCurve + width + cornerCurve / 2} ${topCanvasMargin + 0} 
+        ${leftCanvasMargin + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve / 2} 
+        ${leftCanvasMargin + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve} 
+        L ${leftCanvasMargin + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve + height} 
+        C ${leftCanvasMargin + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve + height + cornerCurve / 2}
+        ${leftCanvasMargin + width + cornerCurve + cornerCurve / 2} ${topCanvasMargin + height + cornerCurve * 2} 
+        ${leftCanvasMargin + width + cornerCurve} ${topCanvasMargin + height + cornerCurve * 2}
+        L ${leftCanvasMargin + width + cornerCurve - (width - tailWidth) / 2} ${topCanvasMargin + height + cornerCurve * 2}
+        L ${leftCanvasMargin + width + cornerCurve - ((width - tailWidth) / 2 + tailWidth / 2)} ${topCanvasMargin + height + cornerCurve * 2 + tailHeight}
+        L ${leftCanvasMargin + width + cornerCurve - ((width - tailWidth) / 2 + tailWidth)} ${topCanvasMargin + height + cornerCurve * 2}
+        L ${leftCanvasMargin + cornerCurve} ${topCanvasMargin + height + cornerCurve * 2}
+        C ${leftCanvasMargin + cornerCurve / 2} ${topCanvasMargin + height + cornerCurve * 2}
+        ${leftCanvasMargin + 0} ${topCanvasMargin + height + cornerCurve + cornerCurve / 2}
+        ${leftCanvasMargin + 0} ${topCanvasMargin + height + cornerCurve}
+        L ${leftCanvasMargin + 0} ${topCanvasMargin + cornerCurve}
+        C ${leftCanvasMargin + 0} ${topCanvasMargin + cornerCurve / 2}
+        ${leftCanvasMargin + cornerCurve / 2} ${topCanvasMargin + 0}
+        ${leftCanvasMargin + cornerCurve} ${topCanvasMargin + 0} Z
   `;
       };
       const createRightBubble = ({
@@ -191,27 +197,28 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         height,
         tailWidth,
         cornerCurve,
+        leftCanvasMargin = 0,
       }: BubbleSizeType) => {
-        return `M ${tailMargin + tailHeight + cornerCurve} 0
-        L ${tailMargin + tailHeight + cornerCurve + width} 0
-        C ${tailMargin + tailHeight + cornerCurve + width + cornerCurve / 2} 0 
-        ${tailMargin + tailHeight + width + cornerCurve * 2} ${cornerCurve / 2} 
-        ${tailMargin + tailHeight + width + cornerCurve * 2} ${cornerCurve} 
-        L ${tailMargin + tailHeight + width + cornerCurve * 2} ${cornerCurve + height} 
-        C ${tailMargin + tailHeight + width + cornerCurve * 2} ${cornerCurve + height + cornerCurve / 2}
-        ${tailMargin + tailHeight + width + cornerCurve + cornerCurve / 2} ${height + cornerCurve * 2} 
-        ${tailMargin + tailHeight + width + cornerCurve} ${height + cornerCurve * 2}
-        L ${tailMargin + tailHeight + cornerCurve} ${height + cornerCurve * 2}
-        C ${tailMargin + tailHeight + cornerCurve / 2} ${height + cornerCurve * 2}
-        ${tailMargin + tailHeight} ${height + cornerCurve + cornerCurve / 2}
-        ${tailMargin + tailHeight} ${height + cornerCurve}
-        L ${tailMargin + tailHeight} ${height + cornerCurve - (height - tailWidth) / 2}
-        L ${tailMargin} ${height + cornerCurve - ((height - tailWidth) / 2 + tailWidth / 2)}
-        L ${tailMargin + tailHeight} ${height + cornerCurve - ((height - tailWidth) / 2 + tailWidth)} 
-        L ${tailMargin + tailHeight} ${cornerCurve}
-        C ${tailMargin + tailHeight} ${cornerCurve / 2}
-        ${tailMargin + tailHeight + cornerCurve / 2} 0
-        ${tailMargin + tailHeight + cornerCurve} 0 Z
+        return `M ${leftCanvasMargin + tailHeight + cornerCurve} ${topCanvasMargin + 0}
+        L ${leftCanvasMargin + tailHeight + cornerCurve + width} ${topCanvasMargin + 0}
+        C ${leftCanvasMargin + tailHeight + cornerCurve + width + cornerCurve / 2} ${topCanvasMargin + 0} 
+        ${leftCanvasMargin + tailHeight + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve / 2} 
+        ${leftCanvasMargin + tailHeight + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve} 
+        L ${leftCanvasMargin + tailHeight + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve + height} 
+        C ${leftCanvasMargin + tailHeight + width + cornerCurve * 2} ${topCanvasMargin + cornerCurve + height + cornerCurve / 2}
+        ${leftCanvasMargin + tailHeight + width + cornerCurve + cornerCurve / 2} ${topCanvasMargin + height + cornerCurve * 2} 
+        ${leftCanvasMargin + tailHeight + width + cornerCurve} ${topCanvasMargin + height + cornerCurve * 2}
+        L ${leftCanvasMargin + tailHeight + cornerCurve} ${topCanvasMargin + height + cornerCurve * 2}
+        C ${leftCanvasMargin + tailHeight + cornerCurve / 2} ${topCanvasMargin + height + cornerCurve * 2}
+        ${leftCanvasMargin + tailHeight} ${topCanvasMargin + height + cornerCurve + cornerCurve / 2}
+        ${leftCanvasMargin + tailHeight} ${topCanvasMargin + height + cornerCurve}
+        L ${leftCanvasMargin + tailHeight} ${topCanvasMargin + height + cornerCurve - (height - tailWidth) / 2}
+        L ${leftCanvasMargin} ${topCanvasMargin + height + cornerCurve - ((height - tailWidth) / 2 + tailWidth / 2)}
+        L ${leftCanvasMargin + tailHeight} ${topCanvasMargin + height + cornerCurve - ((height - tailWidth) / 2 + tailWidth)} 
+        L ${leftCanvasMargin + tailHeight} ${topCanvasMargin + cornerCurve}
+        C ${leftCanvasMargin + tailHeight} ${topCanvasMargin + cornerCurve / 2}
+        ${leftCanvasMargin + tailHeight + cornerCurve / 2} ${topCanvasMargin + 0}
+        ${leftCanvasMargin + tailHeight + cornerCurve} ${topCanvasMargin + 0} Z
   `;
       };
 
@@ -220,26 +227,27 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         height,
         tailWidth,
         cornerCurve,
+        topCanvasMargin = 0,
       }: BubbleSizeType) => {
-        return `M ${cornerCurve + (width - tailWidth) / 2} ${tailHeight + tailMargin}
-        L ${cornerCurve + (width - tailWidth) / 2 + tailWidth / 2} ${tailMargin}
-        L ${cornerCurve + (width - tailWidth) / 2 + tailWidth} ${tailHeight + tailMargin}
-        L ${cornerCurve + width} ${tailHeight + tailMargin}
-        C ${cornerCurve + width + cornerCurve / 2} ${tailHeight + tailMargin}
-        ${cornerCurve * 2 + width} ${tailHeight + tailMargin + cornerCurve / 2}
-        ${cornerCurve * 2 + width} ${tailHeight + tailMargin + cornerCurve}
-        L ${cornerCurve * 2 + width} ${tailHeight + tailMargin + cornerCurve + height}
-        C ${cornerCurve * 2 + width} ${tailHeight + tailMargin + cornerCurve + height + cornerCurve / 2}
-        ${cornerCurve + width + cornerCurve / 2} ${tailHeight + tailMargin + height + cornerCurve * 2}
-        ${cornerCurve + width} ${tailHeight + tailMargin + height + cornerCurve * 2}
-        L ${cornerCurve} ${tailHeight + tailMargin + height + cornerCurve * 2}
-        C ${cornerCurve / 2} ${tailHeight + tailMargin + height + cornerCurve * 2}
-        ${0} ${tailHeight + tailMargin + cornerCurve + height + cornerCurve / 2}
-        ${0} ${tailHeight + tailMargin + cornerCurve + height}
-        L ${0} ${tailHeight + tailMargin + cornerCurve}
-        C ${0} ${tailHeight + tailMargin + cornerCurve / 2}
-        ${cornerCurve / 2} ${tailHeight + tailMargin}
-        ${cornerCurve} ${tailHeight + tailMargin} Z`;
+        return `M ${leftCanvasMargin + cornerCurve + (width - tailWidth) / 2} ${tailHeight + topCanvasMargin}
+        L ${leftCanvasMargin + cornerCurve + (width - tailWidth) / 2 + tailWidth / 2} ${topCanvasMargin}
+        L ${leftCanvasMargin + cornerCurve + (width - tailWidth) / 2 + tailWidth} ${tailHeight + topCanvasMargin}
+        L ${leftCanvasMargin + cornerCurve + width} ${tailHeight + topCanvasMargin}
+        C ${leftCanvasMargin + cornerCurve + width + cornerCurve / 2} ${tailHeight + topCanvasMargin}
+        ${leftCanvasMargin + cornerCurve * 2 + width} ${tailHeight + topCanvasMargin + cornerCurve / 2}
+        ${leftCanvasMargin + cornerCurve * 2 + width} ${tailHeight + topCanvasMargin + cornerCurve}
+        L ${leftCanvasMargin + cornerCurve * 2 + width} ${tailHeight + topCanvasMargin + cornerCurve + height}
+        C ${leftCanvasMargin + cornerCurve * 2 + width} ${tailHeight + topCanvasMargin + cornerCurve + height + cornerCurve / 2}
+        ${leftCanvasMargin + cornerCurve + width + cornerCurve / 2} ${tailHeight + topCanvasMargin + height + cornerCurve * 2}
+        ${leftCanvasMargin + cornerCurve + width} ${tailHeight + topCanvasMargin + height + cornerCurve * 2}
+        L ${leftCanvasMargin + cornerCurve} ${tailHeight + topCanvasMargin + height + cornerCurve * 2}
+        C ${leftCanvasMargin + cornerCurve / 2} ${tailHeight + topCanvasMargin + height + cornerCurve * 2}
+        ${leftCanvasMargin + 0} ${tailHeight + topCanvasMargin + cornerCurve + height + cornerCurve / 2}
+        ${leftCanvasMargin + 0} ${tailHeight + topCanvasMargin + cornerCurve + height}
+        L ${leftCanvasMargin + 0} ${tailHeight + topCanvasMargin + cornerCurve}
+        C ${leftCanvasMargin + 0} ${tailHeight + topCanvasMargin + cornerCurve / 2}
+        ${leftCanvasMargin + cornerCurve / 2} ${tailHeight + topCanvasMargin}
+        ${leftCanvasMargin + cornerCurve} ${tailHeight + topCanvasMargin} Z`;
       };
 
       rc.path(
@@ -250,6 +258,8 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         //   tailHeight,
         //   cornerCurve,
         //   tailMargin,
+        //   leftCanvasMargin,
+        //   topCanvasMargin,
         // }),
         // createRightBubble({
         //   width,
@@ -258,23 +268,29 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         //   tailHeight,
         //   cornerCurve,
         //   tailMargin,
+        //   leftCanvasMargin,
+        //   topCanvasMargin,
         // }),
-        // createTopBubble({
-        //   width,
-        //   height,
-        //   tailWidth,
-        //   tailHeight,
-        //   cornerCurve,
-        //   tailMargin,
-        // }),
-        createLeftBubble({
+        createTopBubble({
           width,
           height,
           tailWidth,
           tailHeight,
           cornerCurve,
           tailMargin,
+          leftCanvasMargin,
+          topCanvasMargin,
         }),
+        // createLeftBubble({
+        //   width,
+        //   height,
+        //   tailWidth,
+        //   tailHeight,
+        //   cornerCurve,
+        //   tailMargin,
+        //   leftCanvasMargin,
+        //   topCanvasMargin,
+        // }),
         {
           fill: "green",
           fillStyle: "solid",
@@ -288,7 +304,7 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
     <div
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
-      style={{ position: "relative", display: "inline-block" }}
+      style={{ position: "relative", width: "inherit" }}
     >
       {children}
       {
