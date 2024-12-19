@@ -30,3 +30,23 @@
   align-items: center;
   justify-content: center;
 }
+
+.top {
+  bottom: 100%;
+}
+
+.bottom {
+  top: 100%;
+}
+
+.left {
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 100%;
+}
+
+.right {
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 100%;
+}
