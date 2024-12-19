@@ -9,7 +9,6 @@ interface TooltipProps {
   height?: number; // 필수
   tailWidth?: number; // 선택
   tailHeight?: number; // 선택
-  tailMargin?: number; // 선택
   cornerCurve?: number; // 선택
   leftCanvasMargin?: number;
   topCanvasMargin?: number;
@@ -20,7 +19,6 @@ interface BubbleSizeType {
   height: number; // 필수
   tailWidth: number; // 필수
   tailHeight: number; // 필수
-  tailMargin: number; // 필수
   cornerCurve: number; // 필수
   leftCanvasMargin?: number;
   topCanvasMargin?: number;
@@ -31,10 +29,9 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
   position = "top",
   children,
   width = 100,
-  height = 0,
+  height = 10,
   tailWidth = 20,
   tailHeight = 30,
-  tailMargin = 10,
   cornerCurve = 50,
   leftCanvasMargin = 5,
   topCanvasMargin = 5,
@@ -140,7 +137,10 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         width,
         height,
         tailWidth,
+        tailHeight,
         cornerCurve,
+        leftCanvasMargin = 0,
+        topCanvasMargin = 0,
       }: BubbleSizeType) => {
         return `M ${leftCanvasMargin + cornerCurve} ${0 + topCanvasMargin}
         L ${leftCanvasMargin + cornerCurve + width} ${0 + topCanvasMargin}
@@ -168,7 +168,10 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         width,
         height,
         tailWidth,
+        tailHeight,
         cornerCurve,
+        leftCanvasMargin = 0,
+        topCanvasMargin = 0,
       }: BubbleSizeType) => {
         return `M ${leftCanvasMargin + cornerCurve} ${topCanvasMargin + 0}
         L ${leftCanvasMargin + cornerCurve + width} ${topCanvasMargin + 0}
@@ -196,8 +199,10 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         width,
         height,
         tailWidth,
+        tailHeight,
         cornerCurve,
         leftCanvasMargin = 0,
+        topCanvasMargin = 0,
       }: BubbleSizeType) => {
         return `M ${leftCanvasMargin + tailHeight + cornerCurve} ${topCanvasMargin + 0}
         L ${leftCanvasMargin + tailHeight + cornerCurve + width} ${topCanvasMargin + 0}
@@ -226,7 +231,9 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         width,
         height,
         tailWidth,
+        tailHeight,
         cornerCurve,
+        leftCanvasMargin = 0,
         topCanvasMargin = 0,
       }: BubbleSizeType) => {
         return `M ${leftCanvasMargin + cornerCurve + (width - tailWidth) / 2} ${tailHeight + topCanvasMargin}
@@ -257,37 +264,33 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         //   tailWidth,
         //   tailHeight,
         //   cornerCurve,
-        //   tailMargin,
         //   leftCanvasMargin,
         //   topCanvasMargin,
         // }),
-        // createRightBubble({
-        //   width,
-        //   height,
-        //   tailWidth,
-        //   tailHeight,
-        //   cornerCurve,
-        //   tailMargin,
-        //   leftCanvasMargin,
-        //   topCanvasMargin,
-        // }),
-        createTopBubble({
+        createRightBubble({
           width,
           height,
           tailWidth,
           tailHeight,
           cornerCurve,
-          tailMargin,
           leftCanvasMargin,
           topCanvasMargin,
         }),
+        // createTopBubble({
+        //   width,
+        //   height,
+        //   tailWidth,
+        //   tailHeight,
+        //   cornerCurve,
+        //   leftCanvasMargin,
+        //   topCanvasMargin,
+        // }),
         // createLeftBubble({
         //   width,
         //   height,
         //   tailWidth,
         //   tailHeight,
         //   cornerCurve,
-        //   tailMargin,
         //   leftCanvasMargin,
         //   topCanvasMargin,
         // }),
@@ -312,15 +315,18 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
           <canvas
             ref={initializeCanvas}
             // width={width + cornerCurve * 2 + 5}
-            // height={height + cornerCurve * 2 + tailHeight + tailMargin + 5}
-            width={500}
-            height={500}
+            // height={height + cornerCurve * 2 + tailHeight + 5}
+            width={leftCanvasMargin * 2 + width + cornerCurve * 2 + tailHeight}
+            height={topCanvasMargin * 2 + height + cornerCurve * 2}
           />
           <div
             style={{
               position: "absolute",
-              top: 75,
-              left: 50,
+              top: 0,
+              left: tailHeight,
+              width: leftCanvasMargin * 2 + width + cornerCurve * 2,
+              height: topCanvasMargin * 2 + height + cornerCurve * 2,
+              padding: cornerCurve / 2,
               pointerEvents: "none",
             }}
           >
