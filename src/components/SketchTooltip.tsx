@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import rough from "roughjs/bin/rough";
 import {
   createLeftBubble,
@@ -7,17 +7,19 @@ import {
   createTopBubble,
 } from "./elements/createSvgPath";
 
-const CanvasTooltip: React.FC<TooltipProps> = ({
+const SketchTooltip: React.FC<TooltipProps> = ({
   content,
-  position = "top",
   children,
-  width = 100,
-  height = 10,
-  tailWidth = 20,
-  tailHeight = 30,
-  cornerCurve = 50,
-  leftCanvasMargin = 5,
-  topCanvasMargin = 5,
+  position = "top",
+  size: {
+    width = 100,
+    height = 10,
+    tailWidth = 20,
+    tailHeight = 30,
+    cornerCurve = 50,
+    leftCanvasMargin = 5,
+    topCanvasMargin = 5,
+  },
   styleOptions = {},
 }) => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
@@ -31,8 +33,8 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
         createBubble(position),
         Object.assign(
           {
-            fill: "green",
-            // fillStyle: "solid",
+            fill: "white",
+            fillStyle: "solid",
             roughness: 1,
           },
           styleOptions
@@ -93,7 +95,7 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
       style={{ position: "relative", width: "inherit" }}
     >
       {children}
-      {showTooltip && (
+      {
         <div
           style={{ position: "absolute", zIndex: 100 }}
           className={`${position}`}
@@ -116,20 +118,23 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
           <div
             style={{
               position: "absolute",
-              top: 0,
-              left: tailHeight,
+              top: position === "bottom" ? tailHeight : 0,
+              left: position === "right" ? tailHeight : 0,
               width: leftCanvasMargin * 2 + width + cornerCurve * 2,
               height: topCanvasMargin * 2 + height + cornerCurve * 2,
               padding: cornerCurve / 2,
               pointerEvents: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             {content}
           </div>
         </div>
-      )}
+      }
     </div>
   );
 };
 
-export default CanvasTooltip;
+export default SketchTooltip;
