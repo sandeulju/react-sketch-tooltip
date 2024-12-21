@@ -18,6 +18,7 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
   cornerCurve = 50,
   leftCanvasMargin = 5,
   topCanvasMargin = 5,
+  styleOptions = {},
 }) => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
@@ -26,11 +27,17 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
     if (canvas) {
       const rc = rough.canvas(canvas);
 
-      rc.path(createBubble(position), {
-        fill: "green",
-        fillStyle: "solid",
-        roughness: 1,
-      });
+      rc.path(
+        createBubble(position),
+        Object.assign(
+          {
+            fill: "green",
+            // fillStyle: "solid",
+            roughness: 1,
+          },
+          styleOptions
+        )
+      );
     }
   };
 
@@ -86,7 +93,7 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
       style={{ position: "relative", width: "inherit" }}
     >
       {children}
-      {
+      {showTooltip && (
         <div
           style={{ position: "absolute", zIndex: 100 }}
           className={`${position}`}
@@ -120,7 +127,7 @@ const CanvasTooltip: React.FC<TooltipProps> = ({
             {content}
           </div>
         </div>
-      }
+      )}
     </div>
   );
 };

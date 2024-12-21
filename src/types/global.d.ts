@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 declare global {
   interface TooltipProps {
-    content: string;
+    content: string | ReactNode;
     children: ReactNode;
     position: "top" | "bottom" | "left" | "right";
     width?: number; // 필수
