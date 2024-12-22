@@ -36,7 +36,7 @@ const App = () => {
         position="top"
         // Customize the size of the tooltip here!
         size={{
-	        width: 100,
+	  width: 100,
           height: 20,
           tailWidth: 20,
           tailHeight: 30,
@@ -45,7 +45,7 @@ const App = () => {
         // you can customize tooltips
         // using the various styles provided by roughjs!        
         styleOptions={{
-	        roughness: 3,
+	  roughness: 3,
           stroke: "skyBlue",
           fill: "skyBlue",
           fillStyle: "zigzag",
