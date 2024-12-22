@@ -37,15 +37,24 @@ function App() {
             <div className="test_box">아래 Tooltip</div>
           </SketchTooltip>
           <SketchTooltip
-            content={<p style={{ color: "white", fontWeight: 600 }}>test</p>}
-            position="left"
-            size={{}}
+            content={<div>Here’s a cool tooltip!</div>}
+            position="top"
+            // Customize the size of the tooltip here!
+            size={{
+              width: 100,
+              height: 20,
+              tailWidth: 20,
+              tailHeight: 30,
+              cornerCurve: 50,
+            }}
+            // you can customize tooltips
+            // using the various styles provided by roughjs!
             styleOptions={{
               roughness: 3,
-              stroke: "purple",
-              strokeWidth: 4,
-              fill: "purple",
+              stroke: "skyBlue",
+              fill: "skyBlue",
               fillStyle: "zigzag",
+              strokeWidth: 4,
               hachureGap: 3,
             }}
           >
