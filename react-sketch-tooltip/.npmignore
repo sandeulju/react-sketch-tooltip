@@ -1,0 +1,54 @@
+# Exclude source files
+ 
+
+# Exclude test files and test configurations
+__tests__/
+coverage/
+test/
+tests/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Exclude local development files
+.idea/
+.vscode/
+*.log
+*.md
+*.json
+
+# Exclude build and temporary files
+build/
+tmp/
+*.map
+
+# Includ build files
+!dist/
+
+# Exclude configuration files (e.g., for CI/CD or local environments)
+*.yml
+*.yaml
+*.env
+*.gitignore
+*package-lock.json
+
+# Exclude package manager lock files if not needed
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Exclude npm package files
+.npmrc
+.npmignore
+
+# Development configuration files
+eslint*
+.prettier*
+stylelint*
+tsconfig*.json
+
+# Development-specific configuration files
+# These files are used only during the development or build process
+vite-env.d.ts
+vite.config.ts

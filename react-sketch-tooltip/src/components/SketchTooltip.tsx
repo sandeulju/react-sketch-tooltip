@@ -13,7 +13,7 @@ const SketchTooltip: React.FC<TooltipProps> = ({
   position = "top",
   size: {
     width = 100,
-    height = 10,
+    height = 20,
     tailWidth = 20,
     tailHeight = 30,
     cornerCurve = 50,
@@ -25,7 +25,6 @@ const SketchTooltip: React.FC<TooltipProps> = ({
   const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
   const initializeCanvas = (canvas: HTMLCanvasElement | null) => {
-    console.log("canvas: ", canvas);
     if (canvas) {
       const rc = rough.canvas(canvas);
 
@@ -95,7 +94,7 @@ const SketchTooltip: React.FC<TooltipProps> = ({
       style={{ position: "relative", width: "inherit" }}
     >
       {children}
-      {
+      {showTooltip && (
         <div
           style={{ position: "absolute", zIndex: 100 }}
           className={`${position}`}
@@ -132,7 +131,7 @@ const SketchTooltip: React.FC<TooltipProps> = ({
             {content}
           </div>
         </div>
-      }
+      )}
     </div>
   );
 };

@@ -38,7 +38,7 @@ function App() {
           </SketchTooltip>
           <SketchTooltip
             content={<div>Here’s a cool tooltip!</div>}
-            position="top"
+            position="left"
             // Customize the size of the tooltip here!
             size={{
               width: 100,
