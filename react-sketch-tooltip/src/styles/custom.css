@@ -50,3 +50,21 @@
   transform: translate(0, -50%);
   left: 100%;
 }
+
+.element_wrap {
+  position: relative;
+  width: inherit;
+}
+
+.tooltip_wrap {
+  position: absolute;
+  z-index: 100;
+}
+
+.tooltip_content_wrap {
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

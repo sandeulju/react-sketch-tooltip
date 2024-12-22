@@ -91,14 +91,11 @@ const SketchTooltip: React.FC<TooltipProps> = ({
     <div
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
-      style={{ position: "relative", width: "inherit" }}
+      className="element_wrap"
     >
       {children}
       {showTooltip && (
-        <div
-          style={{ position: "absolute", zIndex: 100 }}
-          className={`${position}`}
-        >
+        <div className={`tooltip_wrap ${position}`}>
           <canvas
             ref={initializeCanvas}
             width={
@@ -115,17 +112,13 @@ const SketchTooltip: React.FC<TooltipProps> = ({
             }
           />
           <div
+            className="tooltip_content_wrap"
             style={{
-              position: "absolute",
               top: position === "bottom" ? tailHeight : 0,
               left: position === "right" ? tailHeight : 0,
               width: leftCanvasMargin * 2 + width + cornerCurve * 2,
               height: topCanvasMargin * 2 + height + cornerCurve * 2,
               padding: cornerCurve / 2,
-              pointerEvents: "none",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
             }}
           >
             {content}
