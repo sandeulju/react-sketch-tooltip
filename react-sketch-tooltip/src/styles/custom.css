@@ -29,14 +29,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 20px;
 }
 
 .top {
   bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .bottom {
   top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .left {
@@ -59,6 +64,20 @@
 .tooltip_wrap {
   position: absolute;
   z-index: 100;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.tooltip_wrap.active {
+  pointer-events: auto;
+}
+
+.tooltip_wrap.hide {
+  opacity: 0;
+}
+
+.tooltip_wrap.show {
+  opacity: 1;
 }
 
 .tooltip_content_wrap {
