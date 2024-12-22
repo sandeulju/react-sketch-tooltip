@@ -1,50 +1,92 @@
-# React + TypeScript + Vite
+# react-sketch-tooltip
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A customizable sketch-style tooltip for React, inspired by comic-style speech bubbles. Easily add fun and engaging tooltips to your web application!
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Comic-Style Speech Bubbles**: Rounded or pointed borders for a playful look.
+- **Tail Positioning**: Adjustable tail positions (top, bottom, left, right).
+- **Themes and Colors**: With roughjs, you can effortlessly create unique balloon-shaped tooltips by leveraging its wide range of customizable styles!
+    - https://roughjs.com/
+- **Hover Interaction**: Tooltips appear on hover.
+- **HTML Content Support**: Supports not only text but also images, links, and other HTML content.
+- **Resizable**: Fixed size can be set for tooltips.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Install the package via npm:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+```
+npm install react-sketch-tooltip
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+Here’s a basic example to get you started:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
+```tsx
+import React from 'react';
+import SketchTooltip from 'react-sketch-tooltip';
+
+const App = () => {
+  return (
+    <div>
+      <SketchTooltip
+        content={<div>Here’s a cool tooltip!</div>}
+        position="top"
+        // Customize the size of the tooltip here!
+        size={{
+	        width: 100,
+          height: 20,
+          tailWidth: 20,
+          tailHeight: 30,
+          cornerCurve: 50,
+        }}
+        // you can customize tooltips
+        // using the various styles provided by roughjs!        
+        styleOptions={{
+	        roughness: 3,
+          stroke: "skyBlue",
+          fill: "skyBlue",
+          fillStyle: "zigzag",
+          strokeWidth: 4,
+          hachureGap: 3,
+        }}
+        >
+        <button>Hover me!</button>
+      </SketchTooltip>
+    </div>
+  );
+};
+
+export default App;
 ```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `content` | `string` `ReactNode` | - | The content to display inside the tooltip. |
+| `children` | `ReactNode` | - | The markup element to display the tooltip. |
+| `position` | `top` `bottom` `left` `right` | `top` | Position of the tooltip tail. |
+| `size` | `Object` | - | Tooltip size. |
+| └ `width` | `number` | Required | Width of the tooltip. |
+| └ `height` | `number` | Required | Height of the tooltip. |
+| └ `tailWidth` | `number` | `undefined` | Width of the tooltip's tail. |
+| └ `tailHeight` | `number` | `undefined` | Height of the tooltip's tail. |
+| └ `cornerCurve` | `number` | `undefined` | Radius of the tooltip's corner curve. |
+| └ `leftCanvasMargin` | `number` | `undefined` | Left margin of the tooltip's canvas. |
+| └ `topCanvasMargin` | `number` | `undefined` | Top margin of the tooltip's canvas. |
+| `styleOptions` | `{ [key: string]: unknown }` | `undefined` | Custom styles for the tooltip. |
+
+## Contributing
+
+We welcome contributions to enhance `react-sketch-tooltip`. If you have any ideas or find a bug, feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Contact
+
+If you have questions or need help, feel free to reach out or open an issue on the [GitHub repository](https://github.com/sandeulju/react-sketch-tooltip).
