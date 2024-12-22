@@ -122,9 +122,72 @@ const createBottomBubble = ({
   ${leftCanvasMargin + cornerCurve} ${tailHeight + topCanvasMargin} Z`;
 };
 
+/**
+ * position에 따라 path를 생성해 주는 함수
+ * @param {"top" | "bottom" | "left" | "right"} : position
+ * @param {BubbleSizeType} : size options
+ * @returns {string} : svg path
+ */
+const createBubble = (
+  position: "top" | "bottom" | "left" | "right",
+  {
+    width,
+    height,
+    tailWidth,
+    tailHeight,
+    cornerCurve,
+    leftCanvasMargin = 0,
+    topCanvasMargin = 0,
+  }: BubbleSizeType
+) => {
+  switch (position) {
+    case "top":
+      return createTopBubble({
+        width,
+        height,
+        tailWidth,
+        tailHeight,
+        cornerCurve,
+        leftCanvasMargin,
+        topCanvasMargin,
+      });
+    case "bottom":
+      return createBottomBubble({
+        width,
+        height,
+        tailWidth,
+        tailHeight,
+        cornerCurve,
+        leftCanvasMargin,
+        topCanvasMargin,
+      });
+    case "left":
+      return createLeftBubble({
+        width,
+        height,
+        tailWidth,
+        tailHeight,
+        cornerCurve,
+        leftCanvasMargin,
+        topCanvasMargin,
+      });
+    case "right":
+      return createRightBubble({
+        width,
+        height,
+        tailWidth,
+        tailHeight,
+        cornerCurve,
+        leftCanvasMargin,
+        topCanvasMargin,
+      });
+  }
+};
+
 export {
   createLeftBubble,
   createRightBubble,
   createBottomBubble,
   createTopBubble,
+  createBubble,
 };

@@ -1,11 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import rough from "roughjs/bin/rough";
-import {
-  createLeftBubble,
-  createRightBubble,
-  createBottomBubble,
-  createTopBubble,
-} from "./elements/createSvgPath";
+import { createBubble } from "./elements/createSvgPath";
 
 const SketchTooltip: React.FC<TooltipProps> = ({
   content,
@@ -46,7 +41,15 @@ const SketchTooltip: React.FC<TooltipProps> = ({
     if (canvas) {
       const rc = rough.canvas(canvas);
       rc.path(
-        createBubble(position),
+        createBubble(position, {
+          width,
+          height,
+          tailWidth,
+          tailHeight,
+          cornerCurve,
+          leftCanvasMargin,
+          topCanvasMargin,
+        }),
         Object.assign(
           {
             fill: "white",
@@ -56,52 +59,6 @@ const SketchTooltip: React.FC<TooltipProps> = ({
           styleOptions
         )
       );
-    }
-  };
-
-  // 캔버스를 그리는 경로 생성 함수
-  const createBubble = (position: "top" | "bottom" | "left" | "right") => {
-    switch (position) {
-      case "top":
-        return createTopBubble({
-          width,
-          height,
-          tailWidth,
-          tailHeight,
-          cornerCurve,
-          leftCanvasMargin,
-          topCanvasMargin,
-        });
-      case "bottom":
-        return createBottomBubble({
-          width,
-          height,
-          tailWidth,
-          tailHeight,
-          cornerCurve,
-          leftCanvasMargin,
-          topCanvasMargin,
-        });
-      case "left":
-        return createLeftBubble({
-          width,
-          height,
-          tailWidth,
-          tailHeight,
-          cornerCurve,
-          leftCanvasMargin,
-          topCanvasMargin,
-        });
-      case "right":
-        return createRightBubble({
-          width,
-          height,
-          tailWidth,
-          tailHeight,
-          cornerCurve,
-          leftCanvasMargin,
-          topCanvasMargin,
-        });
     }
   };
 
