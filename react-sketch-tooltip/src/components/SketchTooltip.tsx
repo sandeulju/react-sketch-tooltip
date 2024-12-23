@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import rough from "roughjs/bin/rough";
 import { createBubble } from "./elements/createSvgPath";
 
-const SketchTooltip: React.FC<TooltipProps> = ({
+export const SketchTooltip: React.FC<TooltipProps> = ({
   content,
   children,
   position = "top",
@@ -105,5 +105,3 @@ const SketchTooltip: React.FC<TooltipProps> = ({
     </div>
   );
 };
-
-export default SketchTooltip;
