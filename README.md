@@ -85,7 +85,7 @@ We welcome contributions to enhance `react-sketch-tooltip`. If you have any idea
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE file](https://github.com/sandeulju/react-sketch-tooltip/blob/main/LICENSE) for details.
 
 ## Contact
 
