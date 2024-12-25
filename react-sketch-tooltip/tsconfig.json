@@ -3,7 +3,7 @@
     // d.ts 파일 생성
     "declaration": true,
     // d.ts 파일을 어느 경로에 생성할지
-    "declarationDir": "./dist/types",
+    "declarationDir": "./dist",
     // JS 결과물을 어느 경로에 생성할지
     "outDir": "./dist",
     // JS도 만들어야 하므로, emitDeclarationOnly 는 false
