@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "declaration": true, // d.ts 생성
-    "declarationDir": "./dist/types", // d.ts 출력 경로
+    "declarationDir": "./dist", // d.ts 출력 경로
     "outDir": "./dist", // js 출력 경로
-    // "emitDeclarationOnly": true,    // JS를 아예 안 만들 경우 사용
+    "emitDeclarationOnly": false, // JS를 아예 안 만들 경우 사용
     "module": "ESNext",
     "target": "ESNext",
     "strict": true,
