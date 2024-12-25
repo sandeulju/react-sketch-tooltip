@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import rough from "roughjs/bin/rough";
 import { createBubble } from "./elements/createSvgPath";
+import { TooltipProps } from "../types";
 
 export const SketchTooltip: React.FC<TooltipProps> = ({
   content,
