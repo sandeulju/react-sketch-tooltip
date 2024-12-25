@@ -1,5 +1,20 @@
 {
-  "files": [],
+  "compilerOptions": {
+    "declaration": true, // 타입 정의 파일 생성
+    "declarationDir": "./dist/types", // 타입 정의 파일 출력 위치
+    // "emitDeclarationOnly": true, // 타입 정의 파일만 생성
+    "outDir": "./dist", // 빌드 출력 경로
+    "module": "ESNext", // ES 모듈 사용
+    "target": "ESNext", // 최신 JS 타겟
+    "strict": true, // 엄격한 타입 검사
+    "jsx": "react-jsx", // React JSX 지원
+    "moduleResolution": "node", // Node 방식 모듈 해석
+    "esModuleInterop": true, // CommonJS 호환
+    "skipLibCheck": true, // 라이브러리 타입 체크 생략
+    "forceConsistentCasingInFileNames": true // 대소문자 일관성 강제
+  },
+  "include": ["src/**/*"], // 포함할 파일
+  "exclude": ["node_modules", "dist"], // 제외할 파일
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }

@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      entry: "./src/index.ts",
+      entry: "./index.ts",
       name: "ReactSketchTooltip",
       formats: ["es", "cjs"],
       fileName: (format) => `react-sketch-tooltip.${format}.js`,
