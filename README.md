@@ -7,7 +7,7 @@ A customizable sketch-style tooltip for React, inspired by comic-style speech bu
 - **Comic-Style Speech Bubbles**: Rounded or pointed borders for a playful look.
 - **Tail Positioning**: Adjustable tail positions (top, bottom, left, right).
 - **Themes and Colors**: With roughjs, you can effortlessly create unique balloon-shaped tooltips by leveraging its wide range of customizable styles!
-    - https://roughjs.com/
+  - https://roughjs.com/
 - **Hover Interaction**: Tooltips appear on hover.
 - **HTML Content Support**: Supports not only text but also images, links, and other HTML content.
 - **Resizable**: Fixed size can be set for tooltips.
@@ -25,8 +25,9 @@ npm install react-sketch-tooltip
 Here’s a basic example to get you started:
 
 ```tsx
-import React from 'react';
-import SketchTooltip from 'react-sketch-tooltip';
+import React from "react";
+import SketchTooltip from "react-sketch-tooltip";
+import "react-sketch-tooltip/react-sketch-tooltip.css"; // You must import the CSS file!
 
 const App = () => {
   return (
@@ -36,23 +37,23 @@ const App = () => {
         position="top"
         // Customize the size of the tooltip here!
         size={{
-	  width: 100,
+          width: 100,
           height: 20,
           tailWidth: 20,
           tailHeight: 30,
           cornerCurve: 50,
         }}
         // you can customize tooltips
-        // using the various styles provided by roughjs!        
+        // using the various styles provided by roughjs!
         styleOptions={{
-	  roughness: 3,
+          roughness: 3,
           stroke: "skyBlue",
           fill: "skyBlue",
           fillStyle: "zigzag",
           strokeWidth: 4,
           hachureGap: 3,
         }}
-        >
+      >
         <button>Hover me!</button>
       </SketchTooltip>
     </div>
@@ -64,20 +65,21 @@ export default App;
 
 ## Props
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `content` | `string` `ReactNode` | - | The content to display inside the tooltip. |
-| `children` | `ReactNode` | - | The markup element to display the tooltip. |
-| `position` | `top` `bottom` `left` `right` | `top` | Position of the tooltip tail. |
-| `size` | `Object` | - | Tooltip size. |
-| └ `width` | `number` | Required | Width of the tooltip. |
-| └ `height` | `number` | Required | Height of the tooltip. |
-| └ `tailWidth` | `number` | `undefined` | Width of the tooltip's tail. |
-| └ `tailHeight` | `number` | `undefined` | Height of the tooltip's tail. |
-| └ `cornerCurve` | `number` | `undefined` | Radius of the tooltip's corner curve. |
-| └ `leftCanvasMargin` | `number` | `undefined` | Left margin of the tooltip's canvas. |
-| └ `topCanvasMargin` | `number` | `undefined` | Top margin of the tooltip's canvas. |
-| `styleOptions` | `{ [key: string]: unknown }` | `undefined` | Custom styles for the tooltip. |
+| Prop                 | Type                          | Default     | Required    | Description                                |
+| -------------------- | ----------------------------- | ----------- | ----------- | ------------------------------------------ |
+| `content`            | `string` `ReactNode`          | -           | Yes         | The content to display inside the tooltip. |
+| `children`           | `ReactNode`                   | -           | Yes         | The markup element to display the tooltip. |
+| `position`           | `top` `bottom` `left` `right` | `top`       | Yes         | Position of the tooltip tail.              |
+| `size`               | `Object`                      | -           | Yes         | Tooltip size.                              |
+| └ `width`            | `number`                      | `100`       | No          | Width of the tooltip.                      |
+| └ `height`           | `number`                      | `20`        | No          | Height of the tooltip.                     |
+| └ `tailWidth`        | `number`                      | `20`        | No          | Width of the tooltip's tail.               |
+| └ `tailHeight`       | `number`                      | `30`        | No          | Height of the tooltip's tail.              |
+| └ `cornerCurve`      | `number`                      | `50`        | No          | Radius of the tooltip's corner curve.      |
+| └ `leftCanvasMargin` | `number`                      | `5`         | No          | Left margin of the tooltip's canvas.       |
+| └ `topCanvasMargin`  | `number`                      | `5`         | No          | Top margin of the tooltip's canvas.        |
+| `styleOptions`       | `{ [key: string]: unknown }`  | `{}`        | No          | Custom styles for the tooltip.             |
+
 
 ## Contributing
 
@@ -85,7 +87,7 @@ We welcome contributions to enhance `react-sketch-tooltip`. If you have any idea
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE file](https://github.com/sandeulju/react-sketch-tooltip/blob/main/LICENSE) for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Contact
 
