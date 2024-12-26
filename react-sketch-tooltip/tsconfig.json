@@ -3,21 +3,21 @@
     // d.ts 파일 생성
     "declaration": true,
     // d.ts 파일을 어느 경로에 생성할지
-    "declarationDir": "./dist",
+    "declarationDir": "dist",
     // JS 결과물을 어느 경로에 생성할지
-    "outDir": "./dist",
+    "outDir": "dist",
     // JS도 만들어야 하므로, emitDeclarationOnly 는 false
     "emitDeclarationOnly": false,
 
     // 나머지 설정
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "ES2015",
+    "module": "CommonJS",
     "strict": true,
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

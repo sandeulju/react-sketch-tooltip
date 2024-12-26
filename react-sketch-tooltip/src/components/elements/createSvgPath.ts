@@ -1,4 +1,4 @@
-import { BubbleSizeType } from "../../types";
+import { BubbleSizeType } from "../../types/index";
 
 const createLeftBubble = ({
   width,
