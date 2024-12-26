@@ -1,10 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+// import { SketchTooltip } from "react-sketch-tooltip";
+// import "react-sketch-tooltip/react-sketch-tooltip.css";
+
+import "../../../react-sketch-tooltip/src/styles/atomic.css";
+import "../../../react-sketch-tooltip/src/styles/custom.css";
+import { SketchTooltip } from "../../../react-sketch-tooltip";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -17,6 +23,21 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <SketchTooltip
+        content={"24234234"}
+        position="top"
+        size={{}}
+        styleOptions={{
+          roughness: 3,
+          stroke: "skyBlue",
+          fill: "skyBlue",
+          fillStyle: "zigzag",
+          strokeWidth: 4,
+          hachureGap: 3,
+        }}
+      >
+        <h1>Vite + React</h1>
+      </SketchTooltip>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -29,7 +50,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
