@@ -17,15 +17,16 @@
     "typescript"
   ],
   "version": "0.0.0",
-  "main": "./index.ts",
-  "types": "./src/types/index.d.ts",
+  "main": "./dist/react-sketch-tooltip.cjs.js",
+  "module": "./dist/react-sketch-tooltip.es.js",
+  "types": "./dist/types/index.d.ts",
   "private": false,
   "type": "module",
   "exports": {
     ".": {
-      "types": "./src/types/index.d.ts",
-      "import": "./index.ts",
-      "require": "./index.cts"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/react-sketch-tooltip.es.js",
+      "require": "./dist/react-sketch-tooltip.cjs.js"
     }
   },
   "scripts": {
