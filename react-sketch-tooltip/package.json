@@ -29,6 +29,11 @@
       "require": "./dist/react-sketch-tooltip.cjs.js"
     }
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "vite",
     "build:types": "tsc --project tsconfig.json",
