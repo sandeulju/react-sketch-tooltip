@@ -16,7 +16,7 @@
     "javascript",
     "typescript"
   ],
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./dist/react-sketch-tooltip.cjs.js",
   "module": "./dist/react-sketch-tooltip.es.js",
   "types": "./dist/types/index.d.ts",
