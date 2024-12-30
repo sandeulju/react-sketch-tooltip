@@ -95,8 +95,8 @@ export const SketchTooltip: React.FC<TooltipProps> = ({
           style={{
             top: position === "bottom" ? tailHeight : 0,
             left: position === "right" ? tailHeight : 0,
-            width: leftCanvasMargin * 2 + width + cornerCurve * 2,
-            height: topCanvasMargin * 2 + height + cornerCurve * 2,
+            width: leftCanvasMargin * 2 + width + cornerCurve,
+            height: topCanvasMargin * 2 + height + cornerCurve,
             padding: cornerCurve / 2,
           }}
         >
