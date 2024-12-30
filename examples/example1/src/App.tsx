@@ -7,7 +7,7 @@ import "./App.css";
 
 import "../../../react-sketch-tooltip/src/styles/atomic.css";
 import "../../../react-sketch-tooltip/src/styles/custom.css";
-import { SketchTooltip } from "../../../react-sketch-tooltip";
+import { SketchTooltip } from "../../../react-sketch-tooltip/src/components/SketchTooltip";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,7 +26,11 @@ function App() {
       <SketchTooltip
         content={"24234234"}
         position="top"
-        size={{}}
+        size={{
+          width: 150,
+          height: 100,
+          cornerCurve: 20,
+        }}
         styleOptions={{
           roughness: 3,
           stroke: "skyBlue",
